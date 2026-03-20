@@ -1,0 +1,19 @@
+{
+  "name": "aulanode",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Projeto aula",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "db:migrate": "node src/db/migrate.js",
+    "db:seed": "node src/db/seed.js"
+  },
+  "author": "Cezar Junior de Souza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^6.0.1"
+  }
+}
