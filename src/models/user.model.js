@@ -22,6 +22,20 @@ User.init(
         isEmail: true,
       },
     },
+    passwordHash: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      defaultValue: '',
+      field: 'passwordHash',
+    },
+    role: {
+      type: DataTypes.STRING(40),
+      allowNull: false,
+      defaultValue: 'visitante',
+      validate: {
+        isIn: [['admin', 'visitante']],
+      },
+    },
   },
   {
     sequelize,
@@ -29,6 +43,14 @@ User.init(
     tableName: 'Users',
     timestamps: true,
     underscored: false,
+    defaultScope: {
+      attributes: { exclude: ['passwordHash'] },
+    },
+    scopes: {
+      withPassword: {
+        attributes: { include: ['passwordHash'] },
+      },
+    },
   },
 );
 

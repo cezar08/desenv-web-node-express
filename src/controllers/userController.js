@@ -18,6 +18,7 @@ export const getUserById = async (req, res) => {
 
   const user = await User.findByPk(id, {
     include: [{ model: Post, as: 'posts' }],
+    logging: console.log
   });
 
   if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
@@ -63,8 +64,8 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const id = parseId(req.params.id);
   if (id === null) return res.status(400).json({ message: 'ID inválido' });
-
   const user = await User.findByPk(id);
+
   if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
 
   await user.destroy();
